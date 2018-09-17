@@ -1,11 +1,17 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
+
+import com.bytepair.jokedisplay.JokeDisplayActivity;
+import com.bytepair.jokes.JokeMachine;
+
+import static com.bytepair.jokedisplay.JokeDisplayActivity.JOKE_KEY;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +20,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button button = findViewById(R.id.tell_joke_button);
+        if (button != null) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tellJoke(view);
+                }
+            });
+        }
     }
 
 
@@ -40,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        JokeMachine jokeMachine = new JokeMachine();
+        Intent intent = new Intent(this, JokeDisplayActivity.class);
+        intent.putExtra(JOKE_KEY, jokeMachine.getJoke());
+        startActivity(intent);
     }
-
 
 }

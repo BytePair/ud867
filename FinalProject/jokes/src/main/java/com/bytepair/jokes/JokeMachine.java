@@ -3,6 +3,6 @@ package com.bytepair.jokes;
 public class JokeMachine {
 
     public String getJoke() {
-        return "test joke";
+        return "What do you call a fake noodle? An Impasta.";
     }
 }

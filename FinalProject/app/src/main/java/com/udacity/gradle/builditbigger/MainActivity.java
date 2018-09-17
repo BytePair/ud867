@@ -1,19 +1,11 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
-import com.bytepair.jokedisplay.JokeDisplayActivity;
-import com.bytepair.jokes.JokeMachine;
-
-import static com.bytepair.jokedisplay.JokeDisplayActivity.JOKE_KEY;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    tellJoke(view);
+                    tellJoke();
                 }
             });
         }
@@ -57,14 +49,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
-
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
-
-        /*JokeMachine jokeMachine = new JokeMachine();
-        Intent intent = new Intent(this, JokeDisplayActivity.class);
-        intent.putExtra(JOKE_KEY, jokeMachine.getJoke());
-        startActivity(intent);*/
+    /**
+     * Executes an async tank that will retrieve a joke and launch
+     * the joke display activity when returned
+     */
+    public void tellJoke() {
+        new EndpointsAsyncTask().execute(this);
     }
 
 }

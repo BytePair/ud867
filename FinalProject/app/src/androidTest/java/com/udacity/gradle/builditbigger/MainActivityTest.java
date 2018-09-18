@@ -17,8 +17,6 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExt
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.bytepair.jokedisplay.JokeDisplayActivity.JOKE_KEY;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -35,6 +33,6 @@ public class MainActivityTest {
         // verify intent with the expected joke
         intended(allOf(
                 hasComponent(JokeDisplayActivity.class.getName()),
-                hasExtra(equalTo(JOKE_KEY), notNullValue())));
+                hasExtra(JOKE_KEY, "What do you call a fake noodle? An Impasta.")));
     }
 }

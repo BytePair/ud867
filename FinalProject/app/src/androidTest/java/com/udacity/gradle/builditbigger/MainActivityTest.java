@@ -17,6 +17,8 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExt
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.bytepair.jokedisplay.JokeDisplayActivity.JOKE_KEY;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -25,16 +27,14 @@ public class MainActivityTest {
     @Rule
     public IntentsTestRule<MainActivity> intentsTestRule = new IntentsTestRule<>(MainActivity.class);
 
-
     @Test
     public void clickJokeButton() {
         // find the joke button and click it
         onView(withId(R.id.tell_joke_button)).perform(click());
 
-        // ensure new intent is sent with the expected joke
+        // verify intent with the expected joke
         intended(allOf(
                 hasComponent(JokeDisplayActivity.class.getName()),
-                hasExtra(JOKE_KEY, "What do you call a fake noodle? An Impasta.")));
+                hasExtra(equalTo(JOKE_KEY), notNullValue())));
     }
-
 }
